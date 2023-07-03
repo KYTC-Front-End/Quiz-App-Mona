@@ -231,7 +231,7 @@ function  resultScore(username , score , formattime){
     } else {
         leaderboard.push({ username, score ,formattime});
     }
-    // localStorage.setItem('leaderboard' , JSON.stringify(leaderboard));
+    localStorage.setItem('leaderboard' , JSON.stringify(leaderboard));
 }
 
 leaderBtn.addEventListener('click' , ()=>{
