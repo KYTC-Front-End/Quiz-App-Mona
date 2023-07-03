@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz-Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--start hero section -->
+    <section class="main" id="hero">
+        <h1>Quiz Website</h1>
+        <p>10 Multiple choice questions about front-end development</p>
+        <input type="text" class="name" id="fname" placeholder="Your name..">
+        <p id="required"></p>
+        <section class="btn">
+            <button class="Start-btn" id="startQuiz"> Start Quiz</button>
+            <button class="Start-btn" id="Leaderbtn" >Leader Board</button>   
+     </section>
+     </section>
+
+     
+<!-- Quiz Contaner -->
+
+     <section id="quiz" class="quiz-container">
+            <section class="question-header">
+                <div class="counter">
+                    <span id="counter">1/10</span>
+                </div>
+                <div class="timer">
+                    <span id="timer"> 00:00 </span>
+                </div>
+            </section>
+            <section class="multiplechoice">
+                <h2 id="question">Question text ?</h2>
+                <h2 id="error"></h2>
+             <ul>
+          <li class="choices"> 
+                <input type="radio" name="answer"  id="a" class="answer">
+                <label for="a" class="choices-text" id="txt_a">choice 1</label>
+            </li>
+            <li class="choices">
+                <input type="radio" name="answer"   id="b" class="answer">
+                <label for="b" class="choices-text" id="txt_b">choice 2</label>
+            </li>
+            <li class="choices">
+                <input type="radio" name="answer"  id="c" class="answer">
+                <label for="c" class="choices-text" id="txt_c">choice 3</label>
+            </li>
+           <li class="choices"> 
+            <input type="radio" name="answer"  id="d" class="answer">
+            <label for="d" class="choices-text" id="txt_d"> choice 4</label>
+           </li>
+            </ul>
+            <button id="submit" class="Start-btn">Next</button>
+        </section>
+        </section>
+
+
+
+<!--leaderboard-contaner  -->
+
+    <section id="leaderboard">
+        <h2>Leaderboard</h2>
+       <table id="leaderboard-table">
+         <thead>
+           <tr>
+             <th>Username</th>
+             <th>Score</th>
+             <th>Timer</th>
+           </tr>
+         </thead>
+         <tbody id="leaderboard-body">
+         </tbody>
+       </table>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>
+
