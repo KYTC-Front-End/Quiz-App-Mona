@@ -25,15 +25,13 @@
      <section id="quiz" class="quiz-container">
             <section class="question-header">
                 <div class="counter">
+                    Question :
                     <span id="counter">1/10</span>
                 </div>
-                <div class="timer">
-                    <span id="timer"> 00:00 </span>
-                </div>
+              
             </section>
             <section class="multiplechoice">
                 <h2 id="question">Question text ?</h2>
-                <h2 id="error"></h2>
              <ul>
           <li class="choices"> 
                 <input type="radio" name="answer"  id="a" class="answer">
@@ -65,14 +63,14 @@
        <table id="leaderboard-table">
          <thead>
            <tr>
-             <th>Username</th>
+             <th>User Name</th>
              <th>Score</th>
-             <th>Timer</th>
            </tr>
          </thead>
          <tbody id="leaderboard-body">
          </tbody>
        </table>
+       <button class="Start-btn" id= "reload" onclick="location.reload()">Reload</button>;
     </section>
     <script src="index.js"></script>
 </body>
