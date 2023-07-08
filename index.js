@@ -106,9 +106,9 @@ const startQuiz=document.getElementById('startQuiz'); // start button
 const leaderBtn=document.getElementById('Leaderbtn'); // start button
 const quiz= document.getElementById('quiz');
 const counter = document.getElementById('counter');
-const timer = document.getElementById('timer');
+const timeText = document.querySelector(".question-header .time_left_txt");
+const timeCount = document.querySelector(".time_left_txt .timer_sec");
 const questionId=document.getElementById('question');
-const error = document.getElementById('error');
 const inputs =document.querySelectorAll('.answer'); 
 const txt_a=document.getElementById('txt_a');
 const txt_b=document.getElementById('txt_b');
@@ -128,16 +128,13 @@ startQuiz.addEventListener('click' , (event)=>{
         required.textContent='';
         quiz.style.display ='flex';
         hero.style.display='none';
+       
         }
 });
 
 
 let currentQustions= 0;
 let score =0 ;
-let minutes = 0;
-let seconds=0;
-let formattime ='';
-
 // random questions
 const questionCounter=[];
 while(questionCounter.length < 10){
@@ -164,7 +161,6 @@ function startGame() {
 // uncheckedAnswer status
 function uncheckedAnswer() {
     inputs.forEach(inputs => (inputs.checked = false));
-    error.textContent = '';
 }
 
 // chicked answers and submit
@@ -185,40 +181,27 @@ submitBtn.addEventListener('click' , () => {
             score++; 
         }
         currentQustions++;
+
         counter.textContent=`${currentQustions + 1}/10`;
         if (currentQustions < questionCounter.length){
             startGame();
-        } else {
-            resultScore(userNameInput.value, score, formattime);
-            stopTimer();
-            quiz.innerHTML=`<section class="js">
-            <h3>Your answer</h3>
-            <h2><span class="score"> ${score}/${questionCounter.length} </span> questions correctly</h2>
-            <button onclick="location.reload()">Reload</button>
-            </section>`;
+            // startTimer(timeValue);
+
+        } 
+        else {
+            resultScore(userNameInput.value, score);       
+            hero.style.display ='none';
+            quiz.style.display='none';
+            leaderboard.style.display ="flex";
+            leaderboardtable();
             
         }
     }
 });
 
-// timer for game 
- function strTimer(){
-    seconds++;
-    if (seconds >=60){
-        seconds = 0;
-        minutes++;
-    }
-    formattime =`${minutes.toString().padStart(2 , '0')} :${seconds.toString().padStart(2,'0')}`;
-    timer.textContent = formattime;
- }
-
- const timernum = setInterval(strTimer , 1000);
- function stopTimer(){
-    clearInterval(timernum);
- }
 
 //resulte score
-function  resultScore(username , score , formattime){
+function  resultScore(username , score ){
     localStorage.setItem('data' ,JSON.stringify(quizQuestions));
     localStorage.setItem('questions' ,JSON.stringify(questionCounter));
     let leaderboard = JSON.parse(localStorage.getItem('leaderboard'));
@@ -229,7 +212,7 @@ function  resultScore(username , score , formattime){
     if (outUser){
         outUser.score = score ;
     } else {
-        leaderboard.push({ username, score ,formattime});
+        leaderboard.push({ username, score});
     }
     localStorage.setItem('leaderboard' , JSON.stringify(leaderboard));
 }
@@ -245,23 +228,21 @@ leaderBtn.addEventListener('click' , ()=>{
 function leaderboardtable(){
     const leaderboard = JSON.parse(localStorage.getItem('leaderboard'));
     const leaderBoardBody = document.getElementById('leaderboard-body');
-
     if(leaderboard && leaderboard.length > 0 ) {
         leaderboard.sort((a, b) => b.score - a.score);
         leaderboard.forEach((enterr) => {
             const row = document.createElement('tr');
             const user = document.createElement('td');
             const resultt = document.createElement('td');
-            const time =document.createElement('td')
 
             user.textContent = enterr.username;
             resultt.textContent =enterr.score;
-            time.textContent = enterr.formattime
             row.appendChild(user);
             row.appendChild(resultt);
-            row.appendChild(time);
             leaderBoardBody.appendChild(row);
         });
     }
-
+    
 }
+
+//   
